@@ -17,7 +17,7 @@ token = "_dremio"
 content_type = "application/json"
 
 
-def recreate_reflection(refl_json):
+def reenable_reflection(refl_json):
     headers = {'Content-Type': 'application/json', 'Authorization': token}
     data = refl_json
 
@@ -110,4 +110,4 @@ if __name__ == "__main__":
         for reflection in reflections['data']:
             if dataset_id == reflection['datasetId']:
                 if reflection['enabled'] == True:
-                    recreate_reflection(reflection)
+                    reenable_reflection(reflection)
