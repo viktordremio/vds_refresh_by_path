@@ -30,18 +30,21 @@ def recreate_reflection(refl_json):
     data['enabled'] = False
     data = json.dumps(data)
 
+    # disable reflesction
     res = requests.put(dremio_url + '/api/v3/reflection/' +
                        refl_id, headers=headers, data=data, verify=verify_ssl)
 
+    # get new tag version for update
     res = requests.get(
         dremio_url + '/api/v3/reflection/'+refl_id, headers=headers, verify=verify_ssl)
     data = res.json()
-    # print(type(data))
+
     for key in key_to_remove:
         data.pop(key)
     data['enabled'] = True
     data = json.dumps(data)
 
+    # enable reflection, will trigger an update
     requests.put(dremio_url + '/api/v3/reflection/' +
                  refl_id, headers=headers, data=data, verify=verify_ssl)
 
