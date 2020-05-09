@@ -4,7 +4,7 @@ import json
 
 # INPUT:
 # copy vds path from UI, click Copy Path
-dataset_path = 'test.concat'
+dataset_path = 'test.delays'
 
 dremio_url = 'http://localhost:9047'  # url dremio
 user = "viktor"  # user name in dremio
@@ -21,7 +21,7 @@ def recreate_reflection(refl_json):
     headers = {'Content-Type': 'application/json', 'Authorization': token}
     data = refl_json
 
-    key_to_remove = ['status', 'updatedAt', 'createdAt',
+    key_to_remove = ['updatedAt', 'createdAt',
                      'currentSizeBytes', 'totalSizeBytes']
     for key in key_to_remove:
         data.pop(key)
